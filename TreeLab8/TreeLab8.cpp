@@ -106,11 +106,20 @@ struct node* deleteNode( node* root, int key) {
 	return root;
 }
 
+int menu() {
+	int res;
+	cout << "\n --Choose option--" << endl;
+	cout << "1 - Insert into tree" << endl;
+	cout << "2 - Search in tree" << endl;
+	cout << "3 - Delete from tree" << endl;
+	cout << "Other key - exit" << endl;
+	cin >> res;
+	return res;
+}
+
 int main(){
 	node* root = NULL;
-	root = insert(root, 8);
-	root = insert(root, 3);
-	root = insert(root, 1);
+	/*root = insert(root, 8);
 	root = insert(root, 6);
 	root = insert(root, 7);
 	root = insert(root, 10);
@@ -126,6 +135,58 @@ int main(){
 	}
 	else {
 		cout << "false" << endl;
+	}*/
+	
+	while (true) {
+		int result = menu();
+		switch (result) {
+		case 1:
+		{
+			system("cls");
+			int val;
+			cout << "Put value: ";
+			cin >> val;
+			root = insert(root, val);
+			inorder(root);
+		}
+			break;
+		case 2:
+		{
+			system("cls");
+			int ser;
+			cout << "Put value to search: ";
+			cin >> ser;
+			bool ex = exists(root, ser);
+			if (ex == true) {
+				cout << "Exists" << endl;
+			}
+			else {
+				cout << "Do not exist" << endl;
+			}
+		}
+			break;
+		case 3:
+		{
+			system("cls");
+			int del;
+			cout << "Put value to delete: ";
+			cin >> del;
+			bool ex = exists(root, del);
+			if (ex) {
+				root = deleteNode(root, del);
+				inorder(root);
+			}
+			else {
+				cout << "There is no element with a such value"<<endl;
+			}
+		}		
+			break;
+		default:
+		{
+			exit(0);
+		}
+
+		}
 	}
 
 	return 0;
